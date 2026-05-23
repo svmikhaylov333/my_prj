@@ -1,0 +1,3 @@
+max-line-length = 79
+# extend-ignore =
+exclude = test
