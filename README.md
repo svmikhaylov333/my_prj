@@ -3,7 +3,7 @@
 ![Python Version](https://img.shields.io/badge/python-3.9+-blue)
 ![Status](https://img.shields.io/badge/status-development-blue)
 ![Style](https://img.shields.io/badge/code%20style-black-blue)
-![Version](https://img.shields.io/badge/version-0.0.1-orange)
+![Version](https://img.shields.io/badge/version-0.0.1-blue)
 
 Виджет, который показывает несколько последних успешных банковских операций.
 Проект позволяет маскировать номера банковских карт и счетов, 
