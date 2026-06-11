@@ -33,6 +33,7 @@
 - Black
 - Isort
 - Mypy
+- Pytest
 
 ---
 
@@ -136,7 +137,22 @@ mypy .
 Для запуска проверки функций:
 
 ```bash
-python test/test.py
+python tests/test.py
+```
+или
+
+```bash
+pytest
+```
+для проверки покрытия проверки
+
+```bash
+pytest --cov
+```
+
+сформировать отчет, см. htmlcov/index.html
+ ```bash
+pytest --cov=src --cov-report=html
 ```
 
 Проверяются:

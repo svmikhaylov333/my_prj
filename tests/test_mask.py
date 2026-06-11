@@ -1,19 +1,33 @@
 import pytest
+
 from src.masks import get_mask_account, get_mask_card_number
 
-def get_mask_card_number(card_number: str) -> str:
-    """Маскирует номер банковской карты - XXXX XX** **** XXXX"""
 
-    card_number = str(card_number).replace(" ", "")
-    if len(card_number) != 16 or not card_number.isdigit():
-        return "Неверный номер карты"
-    return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
+@pytest.mark.parametrize(
+    "card_number, exp",
+    [
+        ("1234567891234567", "1234 56** **** 4567"),
+        ("1234 5678 9123 4567", "1234 56** **** 4567"),
+        ("1234-5678-9123-4567", "Неверный номер карты"),
+        ("1234 5678 9123 456q", "Неверный номер карты"),
+        ("1234 5678 9123 456", "Неверный номер карты"),
+        ("1234 5678 9123 456123", "Неверный номер карты"),
+    ],
+)
+def test_get_mask_card_number(card_number: str, exp: str) -> None:
+    """Тест маскировки номера банковской карты - XXXX XX** **** XXXX"""
+    assert get_mask_card_number(card_number) == exp
 
 
-def get_mask_account(account: str) -> str:
-    """Маскирует номер банковского счета - **XXXX"""
-
-    account = str(account).replace(" ", "")
-    if len(account) < 4 or not account.isdigit():
-        return "Неверный номер счета"
-    return f"**{account[-4:]}"
+@pytest.mark.parametrize(
+    "account, exp",
+    [
+        ("1234567891234567", "**4567"),
+        ("91234567", "**4567"),
+        ("dsssgs", "Неверный номер счета"),
+        ("i234567891234567", "Неверный номер счета"),
+    ],
+)
+def test_get_mask_account(account: str, exp: str) -> None:
+    """Тест маскировки номер банковского счета - **XXXX"""
+    assert get_mask_account(account) == exp
