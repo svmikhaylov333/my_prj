@@ -12,6 +12,7 @@ from src.masks import get_mask_account, get_mask_card_number
         ("1234 5678 9123 456q", "Неверный номер карты"),
         ("1234 5678 9123 456", "Неверный номер карты"),
         ("1234 5678 9123 456123", "Неверный номер карты"),
+        ("", "Неверный номер карты"),
     ],
 )
 def test_get_mask_card_number(card_number: str, exp: str) -> None:

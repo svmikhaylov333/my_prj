@@ -137,14 +137,13 @@ mypy .
 Для запуска проверки функций:
 
 ```bash
-python tests/test.py
-```
-или
-
-```bash
 pytest
 ```
-для проверки покрытия проверки
+доп. проверки
+```bash
+python tests/test.py
+```
+для анализа покрытия кода тестами использовать
 
 ```bash
 pytest --cov
@@ -154,6 +153,12 @@ pytest --cov
  ```bash
 pytest --cov=src --cov-report=html
 ```
+сформировать отчет "без .gitignore", см. htmlcov/index.html
+ ```bash
+pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
+```
+Если папка (не пустая) htmlcov  существует  и в ней удален .gitignore. 
+при повторных генерациях .gitignore не создается
 
 Проверяются:
 

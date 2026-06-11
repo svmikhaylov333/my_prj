@@ -19,6 +19,7 @@ from src.widget import get_date, mask_account_card
         ("Счет 73654108430135874305", "Счет **4305"),
         ("Счеafhbaehafh54108430135874305", "Введены неверные данные"),
         ("Счеaf r r ", "Введены неверные данные"),
+        ("Счеaf 736 ", "Введены неверные данные"),
     ],
 )
 def test_mask_account_card(card_or_account_info: str, exp: str) -> None:
@@ -30,6 +31,7 @@ def test_mask_account_card(card_or_account_info: str, exp: str) -> None:
     "date, exp",
     [
         ("2024-03-11T02:26:18.671407", "11.03.2024"),
+        ("2024 03 11T02:26:18.671407", "Неверный формат даты"),
         ("1234 5678 9123 4567", "Неверный формат даты"),
         ("123", "Неверный формат даты"),
     ],
