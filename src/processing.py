@@ -1,6 +1,4 @@
-def filter_by_state(
-    list_dict: list[dict], state: str = "EXECUTED"
-) -> list[dict]:
+def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict]:
     """Функция возвращает новый список словарей, содержащий только те словари,
     у которых ключ state"""
     return [item for item in list_dict if item.get("state") == state]
