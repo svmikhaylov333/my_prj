@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = []
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["pytest (>=9.0.3,<10.0.0)"]
 
 
 [build-system]
@@ -19,7 +19,9 @@ lint = [
     "mypy (>=2.1.0,<3.0.0)"
 ]
 dev = [
-    "flake8 (>=7.3.0,<8.0.0)"
+    "flake8 (>=7.3.0,<8.0.0)",
+    "pytest (>=9.0.3,<10.0.0)",
+    "pytest-cov (>=7.1.0,<8.0.0)"
 ]
 
 [tool.black]
