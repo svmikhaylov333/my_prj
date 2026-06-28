@@ -1,19 +1,20 @@
-
 from datetime import datetime
 from functools import wraps
+from typing import Any, Callable
 
 
-def log(filename=None):
+def log(filename: str | None = None) -> Callable[[Callable], Callable]:
     """
     Декоратор для логирования работы функций.
 
     filename - имя файла для записи логов.Если не указан, логи выводятся в консоль.
     """
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
         """Внутрений декоратор, обертка функции"""
+
         @wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             """
             Обертка, которая добавляет логирование к функции.
             """

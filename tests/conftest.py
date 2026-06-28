@@ -1,5 +1,7 @@
-import pytest
 import os
+from typing import Generator
+
+import pytest
 
 
 @pytest.fixture
@@ -114,7 +116,7 @@ def malformed_transactions() -> list[dict]:
 
 
 @pytest.fixture
-def clean_log_file():
+def clean_log_file() -> Generator[str, None, None]:
     """
     Фикстура: создает директорию для логов.
 

@@ -57,6 +57,25 @@ def test_transaction_descriptions_empty(
     assert len(result) == 0
 
 
+def test_transaction_descriptions_attribute_error() -> None:
+    """
+    Тест transaction_descriptions с AttributeError
+    """
+
+
+transactions = [
+    {"description": "Есть описание"},
+    "not a dict",
+    123,
+    {"description": "Еще одно описание"},
+    None,
+]
+
+result = list(transaction_descriptions(transactions))
+expected = ["Есть описание", "Еще одно описание"]
+assert result == expected
+
+
 def test_transaction_descriptions_missing() -> None:
     """тест -  отсутствия описания возвращается стандартное сообщение."""
     transactions: list[dict] = [
