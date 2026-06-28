@@ -11,9 +11,13 @@ def log(filename=None):
     """
 
     def decorator(func):
+        """Внутрений декоратор, обертка функции"""
         @wraps(func)
         def wrapper(*args, **kwargs):
-            # формирование строки для догирования
+            """
+            Обертка, которая добавляет логирование к функции.
+            """
+            # формирование строки для логирования
             args_str = ", ".join([repr(arg) for arg in args])
             kwargs_str = ", ".join([f"{k}={repr(v)}" for k, v in kwargs.items()])
 
@@ -32,7 +36,7 @@ def log(filename=None):
                 result = func(*args, **kwargs)
 
                 # сообщение об успехе
-                log_message = f"[{timestamp}] {func.__name__}({all_args}) -> {repr(result)} (ok)"
+                log_message = f"[{timestamp}] {func.__name__} -> ok"
 
                 # выбор места логирования в консоль или в файл
                 if filename is None:

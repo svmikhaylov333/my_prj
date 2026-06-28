@@ -1,4 +1,5 @@
 import pytest
+import os
 
 
 @pytest.fixture
@@ -110,3 +111,18 @@ def malformed_transactions() -> list[dict]:
         {"id": 123},
         {},
     ]
+
+
+@pytest.fixture
+def clean_log_file():
+    """
+    Фикстура: создает директорию для логов.
+
+    """
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    log_dir = os.path.join(project_root, "tests", "logs")
+    log_file = os.path.join(log_dir, "log.txt")
+
+    os.makedirs(log_dir, exist_ok=True)
+
+    yield log_file
