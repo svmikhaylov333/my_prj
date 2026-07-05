@@ -1,0 +1,45 @@
+[2026-06-28 13:09:37] test_log_filter_by_state_success -> ok
+[2026-06-28 13:09:37] test_func('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:09:37] test_func -> ok
+[2026-06-28 13:11:22] test_log_filter_by_state_success -> ok
+[2026-06-28 13:11:22] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:11:22] test_log_sort_by_date_success -> ok
+[2026-06-28 13:31:36] test_log_filter_by_state_success -> ok
+[2026-06-28 13:31:36] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:31:36] test_log_sort_by_date_success -> ok
+[2026-06-28 13:32:10] test_log_filter_by_state_success -> ok
+[2026-06-28 13:32:10] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:32:10] test_log_sort_by_date_success -> ok
+[2026-06-28 13:39:37] test_log_filter_by_state_success -> ok
+[2026-06-28 13:39:37] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:39:37] test_log_sort_by_date_success -> ok
+[2026-06-28 13:41:52] test_log_filter_by_state_success -> ok
+[2026-06-28 13:41:52] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:41:52] test_log_sort_by_date_success -> ok
+[2026-06-28 13:55:00] test_log_filter_by_state_success -> ok
+[2026-06-28 13:55:00] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:55:00] test_log_sort_by_date_success -> ok
+[2026-06-28 13:55:07] test_log_filter_by_state_success -> ok
+[2026-06-28 13:55:07] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:55:07] test_log_sort_by_date_success -> ok
+[2026-06-28 13:56:20] test_log_filter_by_state_success -> ok
+[2026-06-28 13:56:20] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:56:20] test_log_sort_by_date_success -> ok
+[2026-06-28 13:56:49] test_log_filter_by_state_success -> ok
+[2026-06-28 13:56:49] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:56:49] test_log_sort_by_date_success -> ok
+[2026-06-28 13:59:00] test_log_filter_by_state_success -> ok
+[2026-06-28 13:59:00] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 13:59:00] test_log_sort_by_date_success -> ok
+[2026-06-28 14:10:07] test_log_filter_by_state_success -> ok
+[2026-06-28 14:10:07] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 14:10:07] test_log_sort_by_date_success -> ok
+[2026-06-28 14:10:11] test_log_filter_by_state_success -> ok
+[2026-06-28 14:10:11] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 14:10:11] test_log_sort_by_date_success -> ok
+[2026-06-28 15:02:41] test_log_filter_by_state_success -> ok
+[2026-06-28 15:02:41] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 15:02:41] test_log_sort_by_date_success -> ok
+[2026-06-28 15:02:47] test_log_filter_by_state_success -> ok
+[2026-06-28 15:02:47] test_log_filter_by_state_error('not a list', 'EXECUTED') -> ERROR: AttributeError: 'str' object has no attribute 'get'
+[2026-06-28 15:02:47] test_log_sort_by_date_success -> ok

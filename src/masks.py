@@ -1,3 +1,7 @@
+from src.decorators import log
+
+
+@log("logs/masks.log")
 def get_mask_card_number(card_number: str) -> str:
     """Маскирует номер банковской карты - XXXX XX** **** XXXX"""
 
@@ -7,6 +11,7 @@ def get_mask_card_number(card_number: str) -> str:
     return f"{card_number[:4]} {card_number[4:6]}** **** {card_number[-4:]}"
 
 
+@log("logs/masks.log")
 def get_mask_account(account: str) -> str:
     """Маскирует номер банковского счета - **XXXX"""
 

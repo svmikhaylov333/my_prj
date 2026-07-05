@@ -1,6 +1,9 @@
 from typing import Any, Dict, Iterator, List
 
+from src.decorators import log
 
+
+@log("logs/generators.log")
 def filter_by_currency(transactions: list[dict], currency: str = "USD") -> Iterator[dict]:
     """
        принимает на вход список словарей, представляющих транзакции.
@@ -15,6 +18,7 @@ def filter_by_currency(transactions: list[dict], currency: str = "USD") -> Itera
             continue
 
 
+@log("logs/generators.log")
 def transaction_descriptions(
     transactions: List[Dict[str, Any]],
 ) -> Iterator[str]:
@@ -28,6 +32,7 @@ def transaction_descriptions(
             continue
 
 
+@log("logs/generators.log")
 def card_number_generator(start: int, end: int) -> Iterator[str]:
     """
     генератор - выдает номера банковских карт в формате

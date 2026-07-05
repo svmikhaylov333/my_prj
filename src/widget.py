@@ -1,3 +1,4 @@
+from src.decorators import log
 from src.masks import get_mask_account, get_mask_card_number
 
 # def get_mask_card_number(card_number: str) -> str:
@@ -19,6 +20,7 @@ from src.masks import get_mask_account, get_mask_card_number
 #
 
 
+@log("logs/widget.log")
 def mask_account_card(card_or_account_info: str) -> str:
     """Маскирует информацию о карте или счете
     Примеры:
@@ -43,6 +45,7 @@ def mask_account_card(card_or_account_info: str) -> str:
         return f"{type_card_or_account} {get_mask_card_number(number)}"
 
 
+@log("logs/widget.log")
 def get_date(date: str) -> str:
     """меняет формат даты 2024-03-11T02:26:18.671407 в
     "ДД.ММ.ГГГГ" ("11.03.2024")"""
