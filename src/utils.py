@@ -18,7 +18,9 @@ def load_operations(file_path: str) -> List:
         # парисинг JSON Файла
         with open(file_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
-
+            #если JSON не список, возврат пустого спсика
+            if not isinstance(data, list):
+                return []
             return data
 
     except (json.JSONDecodeError, IOError, OSError):

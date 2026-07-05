@@ -70,7 +70,7 @@ def convert_currency(transaction: Dict[str, Any]) -> float:
                 return round(amount * rate, 2)
             return 0.0
 
-        except (requests.RequestException, ValueError, KeyError, TypeError):
+        except Exception:
             return 0.0
 
     # Для других валют возвращаем 0
