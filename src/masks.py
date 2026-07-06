@@ -1,6 +1,5 @@
 import logging
 import os
-from logging import exception
 
 # настройка логгера для модуля masks
 logger = logging.getLogger(__name__)
@@ -10,7 +9,7 @@ logger.setLevel(logging.DEBUG)
 os.makedirs("logs", exist_ok=True)
 
 # настройка handler
-file_handler = logging.FileHandler("logs/masks.log", mode="a", encoding="utf-8")
+file_handler = logging.FileHandler("logs/masks.log", mode="w", encoding="utf-8")
 # настройка Formatter
 file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
