@@ -2,17 +2,17 @@ import logging
 import os
 from logging import exception
 
-l#настройка логгера для модуля masks
+# настройка логгера для модуля masks
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-#создание папки, если ее нет
+# создание папки, если ее нет
 os.makedirs("logs", exist_ok=True)
 
-#настройка handler
+# настройка handler
 file_handler = logging.FileHandler("logs/masks.log", mode="a", encoding="utf-8")
-#настройка Formatter
-file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S")
+# настройка Formatter
+file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
@@ -30,8 +30,6 @@ def get_mask_card_number(card_number: str) -> str:
     except Exception as exp:
         logger.error(f"Ошибка при маскировке номера карты: {exp}")
         return "Неверный номер карты"
-
-
 
 
 def get_mask_account(account: str) -> str:

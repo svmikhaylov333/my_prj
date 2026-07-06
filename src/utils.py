@@ -1,23 +1,22 @@
 import json
+import logging
 import os
 from typing import List
-import logging
 
-#настройка логгера для модуля utils
+# настройка логгера для модуля utils
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-#создание папки, если ее нет
+# создание папки, если ее нет
 os.makedirs("logs", exist_ok=True)
 
-#настройка handler
+# настройка handler
 file_handler = logging.FileHandler("logs/utils.log", mode="a", encoding="utf-8")
-#настройка Formatter
-file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S")
+# настройка Formatter
+file_formatter = logging.Formatter("%(asctime)s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
-
 
 
 def load_operations(file_path: str) -> List:
