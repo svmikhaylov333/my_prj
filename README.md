@@ -34,7 +34,10 @@
 - Isort
 - Mypy
 - Pytest
-
+- pandas - для работы с CSV и Excel
+- openpyxl - для чтения Excel-файлов
+- requests - для API-запросов
+- python-dotenv - для работы с .env
 ---
 
 ## Установка
@@ -143,6 +146,43 @@ descriptions = list(transaction_descriptions(transactions))
 cards = list(card_number_generator(1, 5))
 # Результат: ["0000 0000 0000 0001", "0000 0000 0000 0002", ...]
 ```
+### Чтение данных из CSV
+
+```python
+from src.file_processing import read_csv_operations
+
+# Чтение транзакций из CSV-файла
+transactions = read_csv_operations("data/transactions.csv")
+print(f"Загружено {len(transactions)} транзакций")
+```
+### Чтение данных из Excel
+
+```python
+from src.file_processing import read_excel_operations
+
+# Чтение транзакций из Excel-файла
+transactions = read_excel_operations("data/transactions_excel.xlsx")
+print(f"Загружено {len(transactions)} транзакций")
+```
+### Загрузка данных из JSON
+```python
+from src.external_api import convert_currency
+
+# Конвертация суммы транзакции в рубли
+transaction = {"amount": 100, "currency": "USD"}
+amount_in_rub = convert_currency(transaction)
+print(f"Сумма в рублях: {amount_in_rub}")  # 7550.0
+```
+### Конвертация валют
+```python
+from src.external_api import convert_currency
+
+# Конвертация суммы транзакции в рубли
+transaction = {"amount": 100, "currency": "USD"}
+amount_in_rub = convert_currency(transaction)
+print(f"Сумма в рублях: {amount_in_rub}")  # 7550.0
+```
+
 ---
 
 ## Разработка
@@ -198,7 +238,10 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 - форматирование дат;
 - обработка строк с реквизитами;
 - фильтрация операций;
-- сортировка операций.
+- сортировка операций;
+- конвертация валют;
+- чтение CSV и Excel файлов.
+
 
 ---
 
@@ -229,7 +272,10 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 - [x] Форматирование дат
 - [x] Фильтрация операций
 - [x] Сортировка операций
-- [x] Генераторы для работы с транзакциями
+- [x] Генераторы для работы с транзакциями- [x] Чтение CSV-файлов
+- [x] Чтение Excel-файлов
+- [x] Конвертация валют
+- [x] Логирование
 - [ ] ...
 
 
