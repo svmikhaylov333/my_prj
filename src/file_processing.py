@@ -1,8 +1,11 @@
+# Модуль для считывания финансовых операций из CSV- и XLSX-файлов.
+
 import os
 from typing import List
 import pandas as pd
 
-# Модуль для считывания финансовых операций из CSV- и XLSX-файлов.
+
+
 def read_csv_operations(file_path: str) -> List:
     """Функция для считывания финансовых операция из CSV файла"""
 
@@ -28,3 +31,22 @@ def read_csv_operations(file_path: str) -> List:
         return []
 
 
+def read_excel_operations(file_path: str) -> List:
+    """Функция для чтения рпераций из Excel файла"""
+
+    try:
+        if not os.path.exists(file_path):
+            return []
+        if os.path.getsize(file_path) == 0:
+            return []
+
+        df =pd.read_excel(file_path)
+        operations =df.to_dict(orient="records")
+        for operation in operations:
+            for key, value in operation.items():
+                if pd.isna(value):
+                    operation[key]= None
+
+        return operations
+    except Exception:
+        return []
