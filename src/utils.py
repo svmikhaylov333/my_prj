@@ -33,10 +33,10 @@ def load_operations(file_path: str) -> List:
             logger.warning(f"Файл пустой: {file_path}")
             return []
 
-        # парисинг JSON Файла
+        # парсинг JSON Файла
         with open(file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
-            # если JSON не список, возврат пустого спсика
+            # если JSON не список, возврат пустого списка
             if not isinstance(data, list):
                 logger.error(f"Данные в файле {file_path} не являются списком")
                 return []
