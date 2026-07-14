@@ -5,6 +5,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 
 from src.file_processing import read_csv_operations, read_excel_operations
+from src.processing import process_bank_search, process_bank_operations
 
 # Тесты CSV
 
@@ -221,3 +222,69 @@ def test_read_excel_operations_with_nan(mock_read_excel: MagicMock) -> None:
         assert result[1]["from"] == "Visa 1234"
     finally:
         os.unlink(tmp_file_path)
+
+
+def test_process_bank_search_found() -> None:
+    """Тест поиска - найдено совпадение"""
+    data = [
+        {"description": "Перевод организации", "amount": 100},
+        {"description": "Открытие вклада", "amount": 200},
+    ]
+    result = process_bank_search(data, "Перевод")
+    assert len(result) == 1
+    assert result[0]["description"] == "Перевод организации"
+
+
+def test_process_bank_search_not_found() -> None:
+    """Тест поиска - ничего не найдено"""
+    data = [{"description": "Перевод организации", "amount": 100}]
+    result = process_bank_search(data, "Карта")
+    assert result == []
+
+
+def test_process_bank_search_empty_data() -> None:
+    """Тест с пустым списком или пустой строкой"""
+
+    result = process_bank_search([], "Перевод")
+    assert result == []
+
+
+    data = [{"description": "Перевод организации", "amount": 100}]
+    result = process_bank_search(data, "")
+    assert result == []
+
+
+def test_process_bank_search_case_insensitive() -> None:
+    """Тест поиска - игнорируемый регистр"""
+    data = [
+        {"description": "Перевод организации", "amount": 100},
+        {"description": "перевод с карты", "amount": 200},
+    ]
+    result = process_bank_search(data, "перевод")
+    assert len(result) == 2
+
+
+def test_process_bank_operations_success() -> None:
+    """Тест подсчета категорий"""
+    data = [
+        {"description": "Перевод организации", "amount": 100},
+        {"description": "Перевод организации", "amount": 200},
+        {"description": "Открытие вклада", "amount": 300},
+    ]
+    categories = ["Перевод организации", "Открытие вклада"]
+
+    result = process_bank_operations(data, categories)
+    assert result["Перевод организации"] == 2
+    assert result["Открытие вклада"] == 1
+
+
+def test_process_bank_operations_empty() -> None:
+    """Тест с пустыми данными"""
+    categories = ["Перевод организации", "Открытие вклада"]
+    result = process_bank_operations([], categories)
+    assert result["Перевод организации"] == 0
+    assert result["Открытие вклада"] == 0
+
+    data = [{"description": "Перевод организации", "amount": 100}]
+    result = process_bank_operations(data, [])
+    assert result == {}
