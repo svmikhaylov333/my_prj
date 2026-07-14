@@ -30,7 +30,7 @@
 - Python 3.12
 - Poetry - управление зависимостями и виртуальным окружением
 - Flake8 - линтер для проверки стиля кода (PEP 8
-- Black -  автоматическое форматирование кода
+- Black - автоматическое форматирование кода
 - Isort - сортировка импортов
 - Mypy - проверка типов
 - Pytest -тестирование кода
@@ -53,6 +53,10 @@ poetry shell
 
 ## Использование
 
+### Запуск программы
+```bash
+python main.py
+```
 ### Маскирование номера карты
 
 ```python
@@ -182,7 +186,39 @@ transaction = {"amount": 100, "currency": "USD"}
 amount_in_rub = convert_currency(transaction)
 print(f"Сумма в рублях: {amount_in_rub}")  # 7550.0
 ```
+### Поиск транзакций по описанию
 
+```python
+from src.processing import process_bank_search
+
+operations = [
+    {"description": "Перевод организации", "amount": 48223.05},
+    {"description": "Открытие вклада", "amount": 200.1},
+    {"description": "Перевод с карты на карту", "amount": 300.9},
+]
+
+# Поиск транзакций с "Перевод" в описании
+result = process_bank_search(operations, "Перевод")
+print(result)
+# [{"description": "Перевод организации", ...}, {"description": "Перевод с карты на карту", ...}]
+```
+### Подсчет категорий транзакций
+
+```python
+from src.processing import process_bank_operations
+
+operations = [
+    {"description": "Перевод организации", "amount": 48223.05},
+    {"description": "Перевод организации", "amount": 79114.93},
+    {"description": "Открытие вклада", "amount": 43318.34},
+]
+
+categories = ["Перевод организации", "Открытие вклада", "Платеж"]
+
+result = process_bank_operations(operations, categories)
+print(result)
+# {'Перевод организации': 2, 'Открытие вклада': 1, 'Платеж': 0}
+```
 ---
 
 ## Разработка
@@ -240,7 +276,8 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 - фильтрация операций;
 - сортировка операций;
 - конвертация валют;
-- чтение CSV и Excel файлов.
+- поиск транзакций по описанию;
+- подсчет категорий транзакций.
 
 
 ---
@@ -277,6 +314,8 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 - [x] Чтение Excel-файлов
 - [x] Конвертация валют
 - [x] Логирование
+- [x] Поиск транзакций по описанию
+- [x] Подсчет категорий транзакций
 - [ ] ...
 
 
