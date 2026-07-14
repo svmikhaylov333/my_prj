@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 
 from src.file_processing import read_csv_operations, read_excel_operations
-from src.processing import process_bank_search, process_bank_operations
+from src.processing import process_bank_operations, process_bank_search
 
 # Тесты CSV
 
@@ -247,7 +247,6 @@ def test_process_bank_search_empty_data() -> None:
 
     result = process_bank_search([], "Перевод")
     assert result == []
-
 
     data = [{"description": "Перевод организации", "amount": 100}]
     result = process_bank_search(data, "")

@@ -1,34 +1,37 @@
-
-from src.widget import mask_account_card, get_date
 from src.file_processing import read_csv_operations, read_excel_operations
-from src.processing import filter_by_state, sort_by_date, process_bank_search
+from src.processing import filter_by_state, process_bank_search, sort_by_date
 from src.utils import load_operations
-#from src.external_api import convert_currency
+from src.widget import get_date, mask_account_card
+
+# from src.external_api import convert_currency
 
 
-def main()->None:
+def main() -> None:
     """Основная функция программы"""
 
     # 1. Выбор источника данных
 
     while True:
-        choice = input("Привет! Добро пожаловать в программу работы с банковскими транзакциями.\n"
-                       "Выберите необходимый пункт меню:\n"
-                       "1. Получить информацию о транзакциях из JSON-файла\n"
-                       "2. Получить информацию о транзакциях из CSV-файла\n"
-                       "3. Получить информацию о транзакциях из XLSX-файла\n"":")
-        if choice == '1':
-            file_path="data/operations.json"
+        choice = input(
+            "Привет! Добро пожаловать в программу работы с банковскими транзакциями.\n"
+            "Выберите необходимый пункт меню:\n"
+            "1. Получить информацию о транзакциях из JSON-файла\n"
+            "2. Получить информацию о транзакциях из CSV-файла\n"
+            "3. Получить информацию о транзакциях из XLSX-файла\n"
+            ":"
+        )
+        if choice == "1":
+            file_path = "data/operations.json"
             print("Для обработки выбран JSON-файл")
             operations = load_operations(file_path)
             break
         elif choice == "2":
-            file_path="data/transactions.csv"
+            file_path = "data/transactions.csv"
             print("Для обработки выбран csv файл")
             operations = read_csv_operations(file_path)
             break
-        elif choice =="3":
-            file_path = 'data/transactions_excel.xlsx'
+        elif choice == "3":
+            file_path = "data/transactions_excel.xlsx"
             print("Для обработки выбран XLSX-файл.")
             operations = read_excel_operations(file_path)
             break
@@ -44,15 +47,17 @@ def main()->None:
 
     # 2. Фильтр по статусу
 
-    valid_statuses =["EXECUTED", "CANCELED", "PENDING"]
+    valid_statuses = ["EXECUTED", "CANCELED", "PENDING"]
 
     while True:
-        status = input("Введите статус, по которому необходимо выполнить фильтрацию.\n"
-                       "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n").upper()
+        status = input(
+            "Введите статус, по которому необходимо выполнить фильтрацию.\n"
+            "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n"
+        ).upper()
 
         if status in valid_statuses:
             print(f"Операция отфильтрована по статусу {status}")
-            operations=filter_by_state(operations, status)
+            operations = filter_by_state(operations, status)
             break
         else:
             print(f'Статус операции "{status}" недоступен.')
@@ -63,16 +68,17 @@ def main()->None:
 
     print()
 
-
-    #3. Сортировка по дате
+    # 3. Сортировка по дате
 
     while True:
         sort_data_choice = input("Отсортировать операции по дате? Да/Нет: ").lower()
         if sort_data_choice in ["да", "нет"]:
             if sort_data_choice == "да":
                 while True:
-                    order = input("Отсортировать по возрастанию или по убыванию? "
-                                  "(введите 'по возрастанию' или 'по убыванию'): ").lower()
+                    order = input(
+                        "Отсортировать по возрастанию или по убыванию? "
+                        "(введите 'по возрастанию' или 'по убыванию'): "
+                    ).lower()
                     if "по возрастанию" in order:
                         operations = sort_by_date(operations, reverse=False)
                         print("Операции отсортированы по возрастанию даты.")
@@ -144,19 +150,18 @@ def main()->None:
         formatted_date = get_date(date) if date else "Дата не указана"
 
         # Получаем описание
-        description = operation.get('description', 'Описание отсутствует')
+        description = operation.get("description", "Описание отсутствует")
 
         # Получаем сумму и валюту
         amount = operation.get("amount")
         currency = operation.get("currency", "RUB")
-
 
         if "operationAmount" in operation:
             amount = operation["operationAmount"].get("amount", 0)
             currency = operation["operationAmount"].get("currency", {}).get("code", "RUB")
 
         # Без конвертации
-        if currency == 'RUB':
+        if currency == "RUB":
             amount_display = f"{amount} руб."
         else:
             amount_display = f"{amount} {currency}"
@@ -170,7 +175,6 @@ def main()->None:
         #         amount_display = f"{amount} {currency}"
         # else:
         #     amount_display = f"{amount} руб."
-
 
         # Маскируем данные
         from_info = operation.get("from", "")
@@ -187,6 +191,7 @@ def main()->None:
             print(f"{to_masked}")
 
         print(f"Сумма: {amount_display}")
+
 
 if __name__ == "__main__":
     main()
