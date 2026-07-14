@@ -246,17 +246,17 @@ mypy .
 ```bash
 pytest
 ```
-доп. проверки
+Дополнительные проверки
 ```bash
 python tests/test.py
 ```
-для анализа покрытия кода тестами использовать
+Для анализа покрытия кода тестами использовать
 
 ```bash
 pytest --cov
 ```
 
-сформировать отчет, см. htmlcov/index.html
+Сформировать отчет, см. htmlcov/index.html
  ```bash
 pytest --cov=src --cov-report=html
 ```
@@ -264,8 +264,8 @@ pytest --cov=src --cov-report=html
  ```bash
 pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 ```
-Если папка (не пустая) htmlcov  существует  и в ней удален .gitignore. 
-при повторных генерациях .gitignore не создается
+Если папка (не пустая) 'htmlcov' существует и в ней удален .gitignore. 
+При повторных генерациях .gitignore не создается
 
 Проверяются:
 
@@ -294,12 +294,12 @@ pytest --cov=src --cov-report=html; Remove-Item htmlcov/.gitignore
 ---
 ## FAQ
 
-Ответы на вопросы..
+Ответы на вопросы...
 
 ---
 ### Для чего нужен проект?
 
-тренировочный проект
+Тренировочный проект
 
 ---
 
