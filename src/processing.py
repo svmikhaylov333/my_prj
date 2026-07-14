@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 
 from src.decorators import log
 
@@ -40,12 +41,12 @@ def process_bank_operations(data: list[dict], categories: list) -> dict:
 
     if not data or not categories:
         return {category: 0 for category in categories} if categories else {}
-    result = {category: 0 for category in categories}
 
+    counter: Counter = Counter()
     for operation in data:
         description = operation.get("description", "")
         for category in categories:
             if category.lower() in description.lower():
-                result[category] += 1
+                counter[category] += 1
 
-    return result
+    return {category: counter.get(category, 0) for category in categories}
