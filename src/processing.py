@@ -19,7 +19,7 @@ def sort_by_date(list_dict: list[dict], reverse: bool = True) -> list[dict]:
 
 def process_bank_search(data:list[dict], search:str)->list[dict]:
     """Функция принимает список словарей с данными о банковских операциях и строку поиска,
-    возвращает список словарейб у которых в описании есть данная строка"""
+    возвращает список словарей у которых в описании есть данная строка"""
 
     if not data or not search:
         return []
