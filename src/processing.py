@@ -1,3 +1,6 @@
+import re
+from collections import Counter
+
 from src.decorators import log
 
 
@@ -14,3 +17,36 @@ def sort_by_date(list_dict: list[dict], reverse: bool = True) -> list[dict]:
     задающий порядок сортировки (по умолчанию — убывание).
     Функция должна возвращать новый список, отсортированный по дате (date)."""
     return sorted(list_dict, key=lambda x: x["date"], reverse=reverse)
+
+
+def process_bank_search(data: list[dict], search: str) -> list[dict]:
+    """Функция принимает список словарей с данными о банковских операциях и строку поиска,
+    возвращает список словарей у которых в описании есть данная строка"""
+
+    if not data or not search:
+        return []
+
+    result = []
+    for operation in data:
+        description = operation.get("description", "")
+        if re.search(re.escape(search), description, re.I):
+            result.append(operation)
+    return result
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """Функция принимает список словарей с данными о банковских операциях и список категорий операций,
+    а возвращает словарь, в котором ключи — это названия категорий, а значения — это количество операций
+    в каждой категории. Категории операций хранятся в поле description."""
+
+    if not data or not categories:
+        return {category: 0 for category in categories} if categories else {}
+
+    counter: Counter = Counter()
+    for operation in data:
+        description = operation.get("description", "")
+        for category in categories:
+            if category.lower() in description.lower():
+                counter[category] += 1
+
+    return {category: counter.get(category, 0) for category in categories}
